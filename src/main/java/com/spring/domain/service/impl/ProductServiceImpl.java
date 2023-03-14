@@ -28,11 +28,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public List<Product> getProductsByIdList(List<String> ids) {
-        try {
-            return productRepository.findProductByIdIn(ids);
-        } catch (Exception e) {
-            throw new ProductNotFoundException("Failed to get products by ids");
-        }
+        return productRepository.findProductByIdIn(ids)
+                .orElseThrow(() -> new ProductNotFoundException("Failed to get products by ids"));
     }
 
 }

@@ -1,6 +1,7 @@
 package com.spring.adapters.controller;
 
 import com.spring.adapters.vo.request.PurchaseRequestVO;
+import com.spring.adapters.vo.response.PurchaseCreationResponseVO;
 import com.spring.domain.service.PurchaseService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,8 @@ public class PurchaseController {
     private PurchaseService purchaseService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody PurchaseRequestVO request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(purchaseService.save(request));
+    public ResponseEntity<PurchaseCreationResponseVO> create(@RequestBody PurchaseRequestVO request){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new PurchaseCreationResponseVO(purchaseService.save(request).getId()));
     }
 }

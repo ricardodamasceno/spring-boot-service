@@ -1,9 +1,10 @@
 package com.spring.domain.service;
 
 import com.spring.adapters.vo.request.PurchaseRequestVO;
+import com.spring.domain.entity.Purchase;
 
 public interface PurchaseService {
 
-    String save(PurchaseRequestVO request);
+    Purchase save(PurchaseRequestVO request);
 
 }

@@ -27,17 +27,16 @@ public class PurchaseServiceImpl implements PurchaseService {
     private final PurchaseItemService purchaseItemService;
     private final PurchaseRepository purchaseRepository;
 
-    public String save(PurchaseRequestVO request) {
+    public Purchase save(PurchaseRequestVO request) {
         User buyer = userService.findById(request.getBuyerId());
-        List<Product> products = productService.getProductsByIdList(request.getProducts());
-
+        Purchase purchase;
         try {
-            Purchase purchase = savePurchase(buyer);
-            purchaseItemService.savePurchaseItems(purchase, products);
-            return purchase.getId();
+            purchase = savePurchase(buyer);
         } catch (Exception e) {
             throw new PurchaseCreationException("Failed to create purchase");
         }
+        purchaseItemService.savePurchaseItems(purchase, request);
+        return purchase;
     }
 
     private Purchase savePurchase(User buyer){
