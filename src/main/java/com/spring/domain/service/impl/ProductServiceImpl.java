@@ -6,10 +6,12 @@ import com.spring.domain.exception.ProductNotFoundException;
 import com.spring.domain.repository.ProductRepository;
 import com.spring.domain.service.ProductService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -29,7 +31,9 @@ public class ProductServiceImpl implements ProductService {
 
     public List<Product> getProductsByIdList(List<String> ids) {
         return productRepository.findProductByIdIn(ids)
-                .orElseThrow(() -> new ProductNotFoundException("Failed to get products by ids"));
+                .orElseThrow(() ->
+                        new ProductNotFoundException("Failed to get products by ids")
+                );
     }
 
 }
