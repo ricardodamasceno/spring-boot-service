@@ -8,6 +8,8 @@ import com.spring.domain.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -15,7 +17,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     public User create(UserRequestVO requestVO) {
-        return userRepository.save(new User(null, requestVO.getName(), requestVO.getEmail()));
+        return userRepository.save(
+                new User(null, requestVO.getName(), requestVO.getEmail(), LocalDateTime.now()));
     }
 
     public User findById(String id) {

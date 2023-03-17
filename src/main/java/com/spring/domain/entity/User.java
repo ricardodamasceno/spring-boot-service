@@ -1,17 +1,17 @@
 package com.spring.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.time.LocalDateTime;
+
+
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -21,5 +21,7 @@ public class User {
     private String name;
 
     private String email;
+
+    private LocalDateTime createdAt;
 
 }
