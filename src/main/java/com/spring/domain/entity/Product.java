@@ -3,6 +3,7 @@ package com.spring.domain.entity;
 import com.spring.domain.enums.ProductCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
